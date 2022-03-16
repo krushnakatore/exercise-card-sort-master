@@ -21,6 +21,24 @@ type CardTransactionMapping = {
  */
 export const processCardEvents = (cardEvents: CardEvent[]): CardTransactionMapping => {
   // logic
+  let object: { [CardId: string]: CardEvent[] } = {} // object delclaration what is key and what is array.........
+  for (let i = 0; i < cardEvents.length; i++) {
+    if (cardEvents[i].type == 'RESERVATION') {
+      if (cardEvents[i + 1].type == 'CANCELLATION' || cardEvents[i + 1].type == 'CONFIRMATION') {
+        let transactions: CardEvent[] = []
+        transactions.push(cardEvents[i])
+        transactions.push(cardEvents[i + 1])
+        object[cardEvents[i].cardId] = transactions
+      }
+    }
+  }
 
-  return {} as CardTransactionMapping
+  console.log(object)
+
+  return object as CardTransactionMapping
 }
+
+//        let transactions: CardEvent[] = []
+//         transactions.push(cardEvents[i])
+//         transactions.push(cardEvents[i + 1])
+//         Successful_Transactions[cardEvents[i].cardId] = transactions

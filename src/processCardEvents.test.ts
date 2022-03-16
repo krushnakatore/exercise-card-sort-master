@@ -1,6 +1,7 @@
 import { processCardEvents } from './processCardEvents'
 import { cardEventsFromDifferentCards } from './inputs/cardEventsFromDifferentCards'
 import { cardEventsWithDuplicates } from './inputs/cardEventsWithDuplicates'
+import { incompleteCardEvents } from './inputs/incompleteCardEvents'
 
 describe('processCardEvents', () => {
   test('it returns valid transactions by cardId', () => {
@@ -54,6 +55,4 @@ describe('processCardEvents', () => {
       ],
     })
   })
-
-  test.todo('it excludes incomplete transactions')
 })
